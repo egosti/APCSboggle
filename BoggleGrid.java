@@ -5,7 +5,17 @@ create class
 main method:
 -get input from reader for size of board
 -create a 2D array with a side = input from reader
+
 -create array of the 26 letters
+  CREATE LETTER CLASS
+    -boolean: isVowel
+    -int x, int y (position on board)
+      method: getPosition()
+        return int[] with [x, y]
+    -char letter
+      method: getLetter()
+    
+    
 -for each spot in array, assign a random letter according to guidelines (create a method)
 
 fillGrid method:

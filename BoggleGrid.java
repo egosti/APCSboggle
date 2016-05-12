@@ -1,21 +1,14 @@
 /* pseudocode for the Boggle Grid
 
-create class
 
-main method:
+//instance variables:
+2D array 
+list of all possible words
+
+constructor:
 -get input from reader for size of board
 -create a 2D array with a side = input from reader
-
--create array of the 26 letters
-  CREATE LETTER CLASS
-    -boolean: isVowel
-    -int x, int y (position on board)
-      method: getPosition()
-        return int[] with [x, y]
-    -char letter
-      method: getLetter()
-    
-    
+-create array of the 26 letters (see letter class)
 -for each spot in array, assign a random letter according to guidelines (create a method)
 
 fillGrid method:
@@ -23,10 +16,4 @@ fillGrid method:
 -fill in remaining letters randomly, Q can only come in if there's already a U, and Q is limited to the areas around U
 -after filling, check. If a letter has surpassed 20% of the board, replace it with another
 
-then maybe we should create a PlayBoggle class?
 
-methods:
--main: (import list of valid words)
--timer
--guessWord (checks if user input is a solution and hasn't been guessed before)
--addPoint (different point values for words of different lengths)

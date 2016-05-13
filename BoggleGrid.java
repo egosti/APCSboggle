@@ -20,11 +20,13 @@ fillGrid method:
 public class BoggleGrid {
   
   private BoggleLetter[][] grid;
+  private int size;
   private char[] letters = new char[26]; //add a for loop for letters
   private int[] letterCounts = new int[26];
   
   public BoggleGrid(int size) {
     grid = new BoggleLetter[size][size];
+    this.size = size;
     fillGrid();
   }
   
@@ -96,6 +98,10 @@ public class BoggleGrid {
       }
     }
     return letterCounts[i] > threshold;
+  }
+  
+  private void fixTooMany(char L) { //find first instance of the letter, replace it with a different letter
+    for (int r = 0; r < size; r++)
   }
   
 }

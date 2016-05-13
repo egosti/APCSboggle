@@ -45,12 +45,25 @@ public class BoggleGrid {
     }
     letterCounts[index]++;
   }
+  
+  private void subtractCount(BoggleLetter bogLet) {
+    char letter = bogLet.getLetter();
+    int index = -1;
+    for (int i = 0; i < letters.length; i++) {
+      if (letter == letters[i]) {
+        index = i;
+      }
+    }
+    letterCounts[index]--;
+  }
     
   
   private void fillGrid() {
     //setLetters
     //fillVowels
     //fillConsonants
+    //checkIfTooMany
+    //fixTooMany
     //checkQ
     Random r = new Random(size); //check if i need to multiply or add size by anything
     int r.nextInt(); //FIGURE OUT ALGORITHM FOR ASSIGNING VOWELS
@@ -69,6 +82,20 @@ public class BoggleGrid {
   
   private char getRandomLetter() {
     //write this method
+    Random r = new Random(26);
+    int index = r.nextInt() + 1;
+    return letters[index];
+  }
+  
+  private boolean checkIfTooMany(BoggleLetter bogLet) { //checks if there are over 20% of the same letter in the grid
+    int threshold = Math.round(size * size * 0.2);
+    int index = -1;
+    for (int i = 0; i < letters.length; i++) {
+      if (letters[i] == bogLet.getLetter()) {
+        index = i;
+      }
+    }
+    return letterCounts[i] > threshold;
   }
   
 }

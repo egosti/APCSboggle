@@ -18,9 +18,23 @@ public class PlayBoggle{
        * return position **[r, c]** of letter, otherwise return [-1, -1]
        
        * if YES: 
-          checkIfWordMatches(guess, position); */
+          checkIfWordMatches(guess, position, 1); */
   }
-  public static boolean checkIfWordMatches(String guess, int[] position){
+  public static boolean checkIfWordMatches(String guess, int[] position, int i){
+    //base case 1
+    if (i == guess.length()){
+      return true;
+    }
+    //base case 2
+    else if (guess.charAt(i) != /****letter @ grid position*/ ){
+      return false;
+    }
+    //recursive case
+    else {
+      i++; 
+      return 
+      checkIfWordMatches(guess, [r-1, c-1], i+1);
+    
     //recursive function
   }
 }

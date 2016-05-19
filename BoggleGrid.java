@@ -111,6 +111,15 @@ public class BoggleGrid {
     }
   }
   
+  private void printGrid() {
+    for (int r = 0; r < size; r++) {
+      for (int c = 0; c < size; c++) {
+        System.out.print(grid[r][c].getLetter());
+      }
+      System.out.println();
+    }
+  }
+  
 }
 
 

@@ -65,6 +65,7 @@ public class BoggleGrid {
     //fillVowels
     //fillConsonants
     //checkIfTooMany
+    //while checkIfTooMany is true, fixTooMany
     //fixTooMany
     //checkQ
     Random r = new Random(size); //check if i need to multiply or add size by anything
@@ -101,7 +102,13 @@ public class BoggleGrid {
   }
   
   private void fixTooMany(char L) { //find first instance of the letter, replace it with a different letter
-    for (int r = 0; r < size; r++)
+    for (int r = 0; r < size; r++) {
+      for (int c = 0; c < size; c++) {
+        if (grid[r][c].getLetter() == L) {
+          grid[r][c] = new BoggleLetter(getRandomLetter(), r, c);
+        }
+      }
+    }
   }
   
 }

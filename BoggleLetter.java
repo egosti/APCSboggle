@@ -22,4 +22,9 @@ public class BoggleLetter{
  public boolean getIsVowel(){
   return this.isVowel;
  }
+ 
+ public String toString() {
+  return letter;
+ }
+ 
 }

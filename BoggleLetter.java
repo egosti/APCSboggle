@@ -14,7 +14,7 @@ public class BoggleLetter{
   return (L == 'A' || L == 'E' == || L == 'I' || L == 'O' || L == 'U');
  }
  public char getLetter(){
-  return this.letter();
+  return this.letter;
  }
  public int[] getPosition(){
   return this.position;

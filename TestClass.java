@@ -9,5 +9,6 @@ public class TestClass {
   System.out.println("Is " + vowel.getLetter() + " a vowel? " + vowel.getIsVowel());
   
   //test BoggleGrid class
+  BoggleGrid grid = new BoggleGrid()
   
   }

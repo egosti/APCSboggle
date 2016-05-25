@@ -4,8 +4,9 @@ public class PlayBoggle{
   public static void main(String[] args){
       Scanner c = new Scanner(System.in);
       BoggleGrid grid = new BoggleGrid(size);
+      grid.printGrid(); //displays grid
+      getGuesses(c);
     /* create timer
-     * display grid
      * while timer > 0, take input from user getGuesses(c) */
   }
   public static void getGuesses(Scanner c){
@@ -43,12 +44,7 @@ public class PlayBoggle{
 methods:
 -main: (import list of valid words)
 -timer 
--display grid
 -public static boolean guessWord (checks if user input is a solution and hasn't been guessed before)
 -addPoint (different point values for words of different lengths)
-
-public class PlayBoggle{
-  public static 
-  
   
 }

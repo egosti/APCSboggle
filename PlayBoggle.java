@@ -5,21 +5,32 @@ public class PlayBoggle{
       Scanner c = new Scanner(System.in);
       BoggleGrid grid = new BoggleGrid(size);
       grid.printGrid(); //displays grid
-      getGuesses(c);
+      getGuesses(c, grid);
     /* create timer
      * while timer > 0, take input from user getGuesses(c) */
   }
-  public static void getGuesses(Scanner c){
+  public static void getGuesses(Scanner c, BoggleGrid grid){
     String guess = c.next();
     guess = guess.toUpperCase();
     
       // *** OUTER LOOP*** 
-    char c = guess.charAt(0);
+    char ch = guess.charAt(0);
       /* go through grid & check if any letter matches char c
        * return position **[r, c]** of letter, otherwise return [-1, -1]
+       * also need a way to check the next instance of c if the first one doesn't work
        
        * if YES: 
           checkIfWordMatches(guess, position, 1); */
+    for (int row = 0; row < size; row++) {
+      for (int col = 0; col < size; col++) {
+        if (grid[row][col].getLetter() == guess) {
+          checkIfWordMatches(guess, position, 1);
+        }
+        else {
+          getGuesses(c, grid); //how do we see if there are any more of the same letter?
+        }
+      }
+    }
   }
   public static boolean checkIfWordMatches(String guess, int[] position, int i){
     //base case 1

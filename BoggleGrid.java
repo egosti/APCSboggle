@@ -110,7 +110,7 @@ public class BoggleGrid {
               } else {
                 grid[r+1][c] = new BoggleLetter('U', r+1, c);
               }
-            } else if (c == size && r > - && r < size - 1) { //the letter is on the right side and not in the corner
+            } else if (c == size - 1 && r > 0 && r < size - 1) { //the letter is on the right side and not in the corner
               position = rand.nextInt(5) + 1;
               if (position == 1) {
                 grid[r-1][c] = new BoggleLetter('U', r-1, c);
@@ -123,7 +123,32 @@ public class BoggleGrid {
               } else {
                 grid[r+1][c] = new BoggleLetter('U', r+1, c);
               }
-            }
+            } else if (r = 0 && c > 0 && c < size - 1) { //the letter is on the top of the grid and not in the corner
+              position = rand.nextInt(5) + 1;
+              if (position == 1) {
+                grid[r][c-1] = new BoggleLetter('U', r, c-1);
+              } else if (position == 2) {
+                grid[r+1][c-1] = new BoggleLetter('U', r+1, c-1);
+              } else if (position == 3) {
+                grid[r+1][c] = new BoggleLetter('U', r+1, c);
+              } else if (position == 4) {
+                grid[r+1][c+1] = new BoggleLetter('U', r+1, c+1);
+              } else {
+                grid[r][c+1] = new BoggleLetter('U', r, c+1);
+              }
+            } else if (r = size - 1 && c > 0 && c < size - 1) { //the letter is on the bottom of the grid and not in the corner
+              position = rand.nextInt(5) + 1;
+              if (position == 1) {
+                grid[r][c-1] = new BoggleLetter('U', r, c-1);
+              } else if (position == 2) {
+                grid[r-1][c-1] = new BoggleLetter('U', r-1, c-1);
+              } else if (position == 3) {
+                grid[r-1][c] = new BoggleLetter('U', r-1, c);
+              } else if (position == 4) {
+                grid[r-1][c+1] = new BoggleLetter('U', r-1, c+1);
+              } else {
+                grid[r][c+1] = new BoggleLetter('U', r, c+1);
+              }
           }
         }
       }

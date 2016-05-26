@@ -70,6 +70,7 @@ public class BoggleGrid {
     //checkQ
     Random rand = new Random(); //check if i need to multiply or add size by anything
     int r.nextInt(); //FIGURE OUT ALGORITHM FOR ASSIGNING VOWELS
+    int position;
     //first assign vowels
     for (int r = 0; r < size; r++) {
       for (int c = 0; c < size; c++) {
@@ -77,8 +78,8 @@ public class BoggleGrid {
           char L = getRandomLetter();
           grid[r][c] = new BoggleLetter(L, r, c);
           if (L == 'Q') {
-            if (r > 0 && r < size - 1 && c > 0 && c < size - 1) {
-              int position = rand.nextInt(8) + 1; //get random number from 1-8
+            if (r > 0 && r < size - 1 && c > 0 && c < size - 1) { // the letter is not on the edge of the grid
+              position = rand.nextInt(8) + 1; //get random number from 1-8
               if (position == 1) {
                 grid[r][c-1] = new BoggleLetter('U', r, c-1);
               } else if (position == 2) {
@@ -93,15 +94,34 @@ public class BoggleGrid {
                 grid[r+1][c+1] = new BoggleLetter('U', r+1, c+1);
               } else if (position == 7) {
                 grid[r+1][c] = new BoggleLetter('U', r+1, c);
-              } else if (position == 8) {
+              } else {
                 grid[r+1][c-1] = new BoggleLetter('U', r+1, c-1);
               }
+            } else if (c == 0 && r > 0 && r < size - 1) { //the letter is on the left side and not in the corner
+              position = rand.nextInt(5) + 1;
+              if (position == 1) {
+                grid[r-1][c] = new BoggleLetter('U', r-1, c);
+              } else if (position == 2) {
+                grid[r-1][c+1] = new BoggleLetter('U', r-1, c+1);
+              } else if (position == 3) {
+                grid[r][c+1] = new BoggleLetter('U', r, c+1);
+              } else if (position == 4) {
+                grid[r+1][c+1] = new BoggleLetter('U', r+1, c+1);
+              } else {
+                grid[r+1][c] = new BoggleLetter('U', r+1, c);
               }
-              }
-              }
-              }
-              }
-              }
+            } else if (c == size && r > - && r < size - 1) { //the letter is on the right side and not in the corner
+              position = rand.nextInt(5) + 1;
+              if (position == 1) {
+                grid[r-1][c] = new BoggleLetter('U', r-1, c);
+              } else if (position == 2) {
+                grid[r-1][c-1] = new BoggleLetter('U', r-1, c-1);
+              } else if (position == 3) {
+                grid[r][c-1] = new BoggleLetter('U', r, c-1);
+              } else if (position == 4) {
+                grid[r+1][c-1] = new BoggleLetter('U', r+1, c-1);
+              } else {
+                grid[r+1][c] = new BoggleLetter('U', r+1, c);
               }
             }
           }

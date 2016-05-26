@@ -14,13 +14,13 @@ public class PlayBoggle{
     Scanner c = new Scanner(System.in);
     int size = c.nextInt();
     BoggleGrid grid = new BoggleGrid(size);
-    grid.printGrid(); //displays grid
+    System.out.println(grid); //displays grid
     
     String guess = "";
     while (!guess.equals(***)){
       guess = getGuesses(c);
       guesses.add(guess);
-      System.out.println(guess);
+      System.out.println(score);
     }
   }
   

@@ -68,15 +68,42 @@ public class BoggleGrid {
     //while checkIfTooMany is true, fixTooMany
     //fixTooMany
     //checkQ
-    Random r = new Random(size); //check if i need to multiply or add size by anything
+    Random rand = new Random(); //check if i need to multiply or add size by anything
     int r.nextInt(); //FIGURE OUT ALGORITHM FOR ASSIGNING VOWELS
+    //first assign vowels
     for (int r = 0; r < size; r++) {
       for (int c = 0; c < size; c++) {
-        if (grid[r][c] != '\u0000') {
+        if (grid[r][c] != '\u0000') { //if a letter is already there (vowel) don't put anything
           char L = getRandomLetter();
           grid[r][c] = new BoggleLetter(L, r, c);
           if (L == 'Q') {
-          //put U next to it
+            if (r > 0 && r < size - 1 && c > 0 && c < size - 1) {
+              int position = rand.nextInt(8) + 1; //get random number from 1-8
+              if (position == 1) {
+                grid[r][c-1] = new BoggleLetter('U', r, c-1);
+              } else if (position == 2) {
+                grid[r-1][c-1] = new BoggleLetter('U', r-1, c-1);
+              } else if (position == 3) {
+                grid[r-1][c] = new BoggleLetter('U', r-1, c);
+              } else if (position == 4) {
+                grid[r-1][c+1] = new BoggleLetter('U', r-1, c+1);
+              } else if (position == 5) {
+                grid[r][c+1] = new BoggleLetter('U', r, c+1);
+              } else if (position == 6) {
+                grid[r+1][c+1] = new BoggleLetter('U', r+1, c+1);
+              } else if (position == 7) {
+                grid[r+1][c] = new BoggleLetter('U', r+1, c);
+              } else if (position == 8) {
+                grid[r+1][c-1] = new BoggleLetter('U', r+1, c-1);
+              }
+              }
+              }
+              }
+              }
+              }
+              }
+              }
+            }
           }
         }
       }
@@ -84,7 +111,6 @@ public class BoggleGrid {
   }
   
   private char getRandomLetter() {
-    //write this method
     Random r = new Random(26);
     int index = r.nextInt() + 1;
     return letters[index];
@@ -95,7 +121,7 @@ public class BoggleGrid {
     int index = -1;
     for (int i = 0; i < letters.length; i++) {
       if (letters[i] == bogLet.getLetter()) {
-        index = i;
+        index = i; //find where the letter occurs
       }
     }
     return letterCounts[i] > threshold;

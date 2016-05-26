@@ -61,13 +61,6 @@ public class BoggleGrid {
     
   
   private void fillGrid() {
-    //setLetters
-    //fillVowels
-    //fillConsonants
-    //checkIfTooMany
-    //while checkIfTooMany is true, fixTooMany
-    //fixTooMany
-    //checkQ
     Random rand = new Random(); //check if i need to multiply or add size by anything
     int r.nextInt(); //FIGURE OUT ALGORITHM FOR ASSIGNING VOWELS
     int position;
@@ -190,6 +183,9 @@ public class BoggleGrid {
         }
       }
     }
+    //checkIfTooMany
+    //while checkIfTooMany is true, fixTooMany
+    //fixTooMany
   }
   
   private char getRandomLetter() {
@@ -219,12 +215,13 @@ public class BoggleGrid {
     }
   }
   
-  private void printGrid() {
+  private String toString() { //needs formatting
+    String temp = "";
     for (int r = 0; r < size; r++) {
       for (int c = 0; c < size; c++) {
-        System.out.print(grid[r][c].getLetter());
+        temp = temp + grid[r][c].getLetter() + " ";
       }
-      System.out.println();
+      temp = temp + "\n";
     }
   }
   

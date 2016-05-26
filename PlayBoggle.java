@@ -1,5 +1,7 @@
 import java.util.*;
 
+public static int score = 0;
+
 public class PlayBoggle{
   public static void main(String[] args){
       Scanner c = new Scanner(System.in);
@@ -24,10 +26,10 @@ public class PlayBoggle{
     for (int row = 0; row < size; row++) {
       for (int col = 0; col < size; col++) {
         if (grid[row][col].getLetter() == guess) {
-          checkIfWordMatches(guess, position, 1);
-        }
-        else {
-          getGuesses(c, grid); //how do we see if there are any more of the same letter?
+          if (checkIfWordMatches(guess, position, 1)){
+            score += guess.length();
+            break;
+          } 
         }
       }
     }
@@ -45,9 +47,15 @@ public class PlayBoggle{
     else {
       i++; 
       return 
-      checkIfWordMatches(guess, [r-1, c-1], i+1);
-    
-    //recursive function
+      checkIfWordMatches(guess, [r-1, c-1], i) ||
+      checkIfWordMatches(guess, [r-1, c], i) || 
+      checkIfWordMatches(guess, [r-1, c+1], i) ||
+      checkIfWordMatches(guess, [r, c-1], i) ||
+      checkIfWordMatches(guess, [r, c+1], i) ||
+      checkIfWordMatches(guess, [r+1, c-1], i) ||
+      checkIfWordMatches(guess, [r+1, c], i) ||
+      checkIfWordMatches(guess, [r+1, c+1], i);
+    }
   }
 }
 

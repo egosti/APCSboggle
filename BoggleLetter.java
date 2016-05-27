@@ -1,17 +1,18 @@
 public class BoggleLetter{
  
  private boolean isVowel;
- private int[] position = [0, 0];
+ private int[] position;
  private char letter;
  
  public BoggleLetter(char L, int r, int c){
+  position = new int[2];
   letter = L;
   position[0] = r;
   position[1] = c;
   isVowel = checkVowel(L);
  }
  private static boolean checkVowel(char L){
-  return (L == 'A' || L == 'E' == || L == 'I' || L == 'O' || L == 'U');
+  return (L == 'A' || L == 'E' || L == 'I' || L == 'O' || L == 'U');
  }
  public char getLetter(){
   return this.letter;
@@ -24,7 +25,8 @@ public class BoggleLetter{
  }
  
  public String toString() {
-  return letter;
+  String temp = "" + letter;
+  return temp;
  }
  
 }

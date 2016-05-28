@@ -12,12 +12,13 @@ public class PlayBoggle{
    */
   public static void main(String[] args){
     Scanner c = new Scanner(System.in);
+    System.out.println("Enter size: ");
     int size = c.nextInt();
     BoggleGrid grid = new BoggleGrid(size);
     System.out.println(grid); //displays grid
     
     String guess = "";
-    while (!guess.equals(***)){
+    while (!guess.equals("***")){
       guess = getGuesses(c);
       guesses.add(guess);
       System.out.println(score);
@@ -28,6 +29,7 @@ public class PlayBoggle{
    *  Go through entire grid to search for the word.
    */
   public static String getGuesses(Scanner c){
+    System.out.println("Enter guess: ");
     String guess = c.next();
     if (guess.equals("***") || alreadyGuessed()) return guess;
     guess = guess.toUpperCase();

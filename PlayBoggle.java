@@ -76,6 +76,7 @@ public class PlayBoggle{
         checkIfWordMatches(guess, [r+1, c+1], i);
       }
     }
+    else return false;
   }
   public static boolean alreadyGuessed(){
     for (int i=0; i<guesses.size(); i++){

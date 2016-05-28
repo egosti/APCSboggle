@@ -36,7 +36,7 @@ public class PlayBoggle{
     //goes through entire grid
     for (int row = 0; row < size; row++) {
       for (int col = 0; col < size; col++) {
-        if (checkIfWordMatches(guess, position, 0)){
+        if (checkIfWordMatches(guess, [row, col], 0)){
           score += guess.length(); //adds length of guess to the score
           break;
         }

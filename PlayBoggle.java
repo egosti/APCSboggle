@@ -48,7 +48,7 @@ public class PlayBoggle{
   /** Recursive function.
    *  Checks if the word is in the grid; returns false if no. 
    */
-  public static boolean checkIfWordMatches(String guess, int[] position, int 0){
+  public static boolean checkIfWordMatches(String guess, int[] position, int i){
     int r = position[0];
     int c = position[1];
     

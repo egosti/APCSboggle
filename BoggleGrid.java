@@ -16,6 +16,7 @@ fillGrid method:
 -fill in remaining letters randomly, Q can only come in if there's already a U, and Q is limited to the areas around U
 -after filling, check. If a letter has surpassed 20% of the board, replace it with another
 */
+import java.util.Random;
 
 public class BoggleGrid {
   
@@ -27,13 +28,14 @@ public class BoggleGrid {
   public BoggleGrid(int size) {
     grid = new BoggleLetter[size][size];
     this.size = size;
+    setLetters();
     fillGrid();
   }
   
-  private void setLetters() { //add a for loop to fill letters
+  private void setLetters() { //add a for loop to fill letters array
     letters[0] = 'A';
     for (int i = 1; i < letters.length; i++) {
-      letters[i] = letters[0] + 1;
+      letters[i] = (char) (letters[i - 1] + 1);
     }
   }
   
@@ -62,12 +64,11 @@ public class BoggleGrid {
   
   private void fillGrid() {
     Random rand = new Random(); //check if i need to multiply or add size by anything
-    int r.nextInt(); //FIGURE OUT ALGORITHM FOR ASSIGNING VOWELS
     int position;
     //first assign vowels
     for (int r = 0; r < size; r++) {
       for (int c = 0; c < size; c++) {
-        if (grid[r][c] != '\u0000') { //if a letter is already there (vowel) don't put anything
+	//  if (grid[r][c].getLetter() != '\u0000') { //if a letter is already there (vowel) don't put anything
           char L = getRandomLetter();
           grid[r][c] = new BoggleLetter(L, r, c);
           if (L == 'Q') {
@@ -151,7 +152,7 @@ public class BoggleGrid {
               } else {
                 grid[r][c+1] = new BoggleLetter('U', r, c+1);
               }
-            } else if (r == size - 1 && c = 0) { //bottom left corner
+            } else if (r == size - 1 && c == 0) { //bottom left corner
               position = rand.nextInt(3) + 1;
               if (position == 1) {
                 grid[r-1][c] = new BoggleLetter('U', r-1, c);
@@ -179,7 +180,7 @@ public class BoggleGrid {
                 grid[r+1][c] = new BoggleLetter('U', r+1, c);
               }
             }
-          }
+	    //  }
         }
       }
     }
@@ -189,20 +190,20 @@ public class BoggleGrid {
   }
   
   private char getRandomLetter() {
-    Random r = new Random(26);
-    int index = r.nextInt() + 1;
+    Random r = new Random();
+    int index = r.nextInt(26);
     return letters[index];
   }
   
   private boolean checkIfTooMany(BoggleLetter bogLet) { //checks if there are over 20% of the same letter in the grid
-    int threshold = Math.round(size * size * 0.2);
+    long threshold = Math.round(size * size * 0.2);
     int index = -1;
     for (int i = 0; i < letters.length; i++) {
       if (letters[i] == bogLet.getLetter()) {
         index = i; //find where the letter occurs
       }
     }
-    return letterCounts[i] > threshold;
+    return letterCounts[index] > threshold;
   }
   
   private void fixTooMany(char L) { //find first instance of the letter, replace it with a different letter
@@ -215,7 +216,7 @@ public class BoggleGrid {
     }
   }
   
-  private String toString() { //needs formatting
+  public String toString() { //needs formatting
     String temp = "";
     for (int r = 0; r < size; r++) {
       for (int c = 0; c < size; c++) {
@@ -223,8 +224,12 @@ public class BoggleGrid {
       }
       temp = temp + "\n";
     }
+    return temp;
   }
   
 }
+
+
+
 
 

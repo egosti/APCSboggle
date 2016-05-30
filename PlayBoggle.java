@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class PlayBoggle{
 
@@ -13,9 +14,9 @@ public class PlayBoggle{
    *  Display grid.
    *  Allow the user to guess as many words as possible.
    */
-  public static void main(String[] args){
+  public static void main(String[] args) throws FileNotFoundException {
     Scanner c = new Scanner(System.in);
-    Scanner input = new Scanner(new File("blah.txt"));
+    Scanner input = new Scanner(new File("wordsEn.txt"));
     String nextWordInDictionary;
     while (input.hasNext()) {
       nextWordInDictionary = input.next().toUpperCase();
@@ -104,9 +105,9 @@ public class PlayBoggle{
     int index = -1; //index of the guess in the dictionary
     while (low <= high) {
       middle = (low + high) / 2;
-      if (guess.compareTo(dictionary.get(middle) < 0)) {
+      if (guess.compareTo(dictionary.get(middle)) < 0) {
         high = middle;
-      } else if (guess.compareTo(dictionary.get(middle) > 0)) {
+      } else if (guess.compareTo(dictionary.get(middle)) > 0) {
         low = middle;
       } else {
         index = middle;

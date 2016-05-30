@@ -8,7 +8,7 @@ public class PlayBoggle{
   public static ArrayList<String> guesses = new ArrayList<String>();
   public static int size;
   public static String guess;
-  public static ArrayList<String> dictionary = new ArrayList<String>();
+  public static HashSet<String> dictionary = new HashSet<>();
   
   /** Get size from user and create grid of that size.
    *  Display grid.
@@ -22,8 +22,9 @@ public class PlayBoggle{
       nextWordInDictionary = input.next().toUpperCase();
       dictionary.add(nextWordInDictionary); //creates arraylist of all the possible words in the English language
     }
-    
-    System.out.println("Enter size: ");
+
+    intro();
+    System.out.println("Please enter the size of the grid (5 or higher recommended): ");
     size = c.nextInt();
     grid = new BoggleGrid(size);
     System.out.println(grid); //displays grid
@@ -32,8 +33,13 @@ public class PlayBoggle{
     while (!guess.equals("***")){
       guess = getGuesses(c);
       guesses.add(guess);
-      System.out.println(score);
+      System.out.println("Your score is " + score);
+      System.out.println();
     }
+  }
+
+  public static void intro() {
+    System.out.println("Welcome to Boggle!\nThis is an untimed game that tests your ability to find English words in a grid of letters. The letters of the words need to be connected to each other either side-by-side or diagonally. Each word you guess correctly increases your total score by the number of letters in the word. Once you run out of words, just enter three stars (***) to exit the game. Happy Boggling!");
   }
   
   /** Get guesses from the user.
@@ -48,7 +54,7 @@ public class PlayBoggle{
     for (int row = 0; row < size; row++) {
       for (int col = 0; col < size; col++) {
         int[] position = new int[2];
-         if (checkIfWordMatches(guess, row, col, 0) && doesWordExist(guess)){
+	if (checkIfWordMatches(guess, row, col, 0) && dictionary.contains(guess)) {
           score += guess.length(); //adds length of guess to the score
           break;
         }
@@ -91,28 +97,11 @@ public class PlayBoggle{
   public static boolean alreadyGuessed(){
     for (int i=0; i<guesses.size(); i++){
       if (guess.equals(guesses.get(i))){
-        System.out.println("Already guessed.");
+        System.out.println("You've already guessed this word!");
         return true;
       }
     }
     return false;
   }
-  
-  public static boolean doesWordExist(String guess) { //binary search for word
-    int low = 0; //these numbers are the indexes of the words
-    int high = dictionary.size() - 1; //i'm calling the file "dictionary"
-    int middle;
-    int index = -1; //index of the guess in the dictionary
-    while (low <= high) {
-      middle = (low + high) / 2;
-      if (guess.compareTo(dictionary.get(middle)) < 0) {
-        high = middle;
-      } else if (guess.compareTo(dictionary.get(middle)) > 0) {
-        low = middle;
-      } else {
-        index = middle;
-      }
-    }
-    return (index != -1);
-  }
+
 }

@@ -7,6 +7,7 @@ public class PlayBoggle{
   public static ArrayList<String> guesses = new ArrayList<String>();
   public static int size;
   public static String guess;
+  public static ArrayList<String> dictionary = new ArrayList<String>();
   
   /** Get size from user and create grid of that size.
    *  Display grid.
@@ -14,6 +15,13 @@ public class PlayBoggle{
    */
   public static void main(String[] args){
     Scanner c = new Scanner(System.in);
+    Scanner input = new Scanner(new File("blah.txt"));
+    String nextWordInDictionary;
+    while (input.hasNext()) {
+      nextWordInDictionary = input.next().toUpperCase();
+      dictionary.add(nextWordInDictionary); //creates arraylist of all the possible words in the English language
+    }
+    
     System.out.println("Enter size: ");
     size = c.nextInt();
     grid = new BoggleGrid(size);
@@ -39,7 +47,7 @@ public class PlayBoggle{
     for (int row = 0; row < size; row++) {
       for (int col = 0; col < size; col++) {
         int[] position = new int[2];
-         if (checkIfWordMatches(guess, row, col, 0)){
+         if (checkIfWordMatches(guess, row, col, 0) && doesWordExist(guess)){
           score += guess.length(); //adds length of guess to the score
           break;
         }
@@ -91,14 +99,14 @@ public class PlayBoggle{
   
   public static boolean doesWordExist(String guess) { //binary search for word
     int low = 0; //these numbers are the indexes of the words
-    int high = dictionary.length - 1; //i'm calling the file "dictionary"
+    int high = dictionary.size() - 1; //i'm calling the file "dictionary"
     int middle;
     int index = -1; //index of the guess in the dictionary
     while (low <= high) {
       middle = (low + high) / 2;
-      if (guess.compareTo(dictionary[middle] < 0)) {
+      if (guess.compareTo(dictionary.get(middle) < 0)) {
         high = middle;
-      } else if (guess.compareTo(dictionary[middle] > 0)) {
+      } else if (guess.compareTo(dictionary.get(middle) > 0)) {
         low = middle;
       } else {
         index = middle;

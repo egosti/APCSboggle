@@ -18,8 +18,8 @@ public class BoggleGrid {
   
   private BoggleLetter[][] grid;
   private int size;
-  private char[] letters = new char[26]; //add a for loop for letters
-  private int[] letterCounts = new int[26];
+  private char[] letters = new char[31]; //add a for loop for letters, vowels show up twice
+  private int[] letterCounts = new int[31];
   
   public BoggleGrid(int size) {
     grid = new BoggleLetter[size][size];
@@ -33,25 +33,30 @@ public class BoggleGrid {
     for (int i = 1; i < letters.length; i++) {
       letters[i] = (char) (letters[i - 1] + 1);
     }
+    letters[26] = 'A';
+    letters[27] = 'E';
+    letters[28] = 'I';
+    letters[29] = 'O';
+    letters[30] = 'U';
   }
   
-  private void addCount(BoggleLetter bogLet) {
-    char letter = bogLet.getLetter();
+  private void addCount(char letter) {
     int index = -1;
     for (int i = 0; i < letters.length; i++) {
       if (letter == letters[i]) {
         index = i;
+	break;
       }
     }
     letterCounts[index]++;
   }
   
-  private void subtractCount(BoggleLetter bogLet) {
-    char letter = bogLet.getLetter();
-    int index = -1;
+  private void subtractCount(char letter) {
+    int index = 0;
     for (int i = 0; i < letters.length; i++) {
       if (letter == letters[i]) {
         index = i;
+      break;
       }
     }
     letterCounts[index]--;
@@ -67,6 +72,7 @@ public class BoggleGrid {
 	//  if (grid[r][c].getLetter() != '\u0000') { //if a letter is already there (vowel) don't put anything
           char L = getRandomLetter();
           grid[r][c] = new BoggleLetter(L, r, c);
+	  addCount(grid[r][c].getLetter());
           if (L == 'Q') {
             if (r > 0 && r < size - 1 && c > 0 && c < size - 1) { // the letter is not on the edge of the grid
               position = rand.nextInt(8) + 1; //get random number from 1-8
@@ -175,6 +181,7 @@ public class BoggleGrid {
               } else {
                 grid[r+1][c] = new BoggleLetter('U', r+1, c);
               }
+	      addCount('Q');
             }
 	    //  }
         }
@@ -183,6 +190,22 @@ public class BoggleGrid {
     //checkIfTooMany
     //while checkIfTooMany is true, fixTooMany
     //fixTooMany
+    boolean isRight = false;
+    boolean fixAny;
+    while (!isRight) {
+      fixAny = false;
+      for (int r = 0; r < size; r++) {
+	for (int c = 0; c < size; c++) {
+	  if (checkIfTooMany(grid[r][c])) {
+	    fixTooMany(grid[r][c].getLetter());
+	    fixAny = true;
+	  }
+	}
+      }
+      if (!fixAny) {
+	isRight = true;
+      }
+    }
   }
   
   private char getRandomLetter() {
@@ -206,6 +229,7 @@ public class BoggleGrid {
     for (int r = 0; r < size; r++) {
       for (int c = 0; c < size; c++) {
         if (grid[r][c].getLetter() == L) {
+	  subtractCount(L);
           grid[r][c] = new BoggleLetter(getRandomLetter(), r, c);
         }
       }

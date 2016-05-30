@@ -78,6 +78,7 @@ public class PlayBoggle{
     }
     else return false;
   }
+  
   public static boolean alreadyGuessed(){
     for (int i=0; i<guesses.size(); i++){
       if (guess.equals(guesses.get(i))){
@@ -86,5 +87,23 @@ public class PlayBoggle{
       }
     }
     return false;
+  }
+  
+  public static boolean doesWordExist(String guess) { //binary search for word
+    int low = 0; //these numbers are the indexes of the words
+    int high = dictionary.length - 1; //i'm calling the file "dictionary"
+    int middle;
+    int index = -1; //index of the guess in the dictionary
+    while (low <= high) {
+      middle = (low + high) / 2;
+      if (guess.compareTo(dictionary[middle] < 0)) {
+        high = middle;
+      } else if (guess.compareTo(dictionary[middle] > 0)) {
+        low = middle;
+      } else {
+        index = middle;
+      }
+    }
+    return (index != -1);
   }
 }

@@ -36,6 +36,9 @@ public class PlayBoggle{
       System.out.println("Your score is " + score);
       System.out.println();
     }
+    
+    System.out.println("Goodbye!");
+    
   }
 
   public static void intro() {
@@ -48,19 +51,25 @@ public class PlayBoggle{
   public static String getGuesses(Scanner c){
     System.out.println("Enter guess: ");
     guess = c.next();
-    if (guess.equals("***") || alreadyGuessed()) return guess;
-    guess = guess.toUpperCase();
-    //goes through entire grid
-    for (int row = 0; row < size; row++) {
-      for (int col = 0; col < size; col++) {
-        int[] position = new int[2];
-	if (checkIfWordMatches(guess, row, col, 0) && dictionary.contains(guess)) {
-          score += guess.length(); //adds length of guess to the score
-          break;
-        }
+    if (guess.equals("***") || alreadyGuessed()) {
+      return guess;
+    } else {
+      guess = guess.toUpperCase();
+      //goes through entire grid
+      for (int row = 0; row < size; row++) {
+	for (int col = 0; col < size; col++) {
+	  int[] position = new int[2];
+	  if (checkIfWordMatches(guess, row, col, 0) && dictionary.contains(guess) && !alreadyGuessed()) {
+	    score += guess.length(); //adds length of guess to the score
+	    return guess;
+	  }
+	}
       }
+      if (!dictionary.contains(guess)) {
+	System.out.println("Word does not exist!");
+      }
+      return guess;
     }
-    return guess;
   }
   
   /** Recursive function.
@@ -91,7 +100,9 @@ public class PlayBoggle{
         checkIfWordMatches(guess, r+1, c+1, i);
       }
     }
-    else return false;
+    else {
+      return false;
+    }
   }
   
   public static boolean alreadyGuessed(){

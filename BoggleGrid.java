@@ -210,7 +210,7 @@ public class BoggleGrid {
   
   private char getRandomLetter() {
     Random r = new Random();
-    int index = r.nextInt(26);
+    int index = r.nextInt(31);
     return letters[index];
   }
   

@@ -1,4 +1,4 @@
-/* pseudocode for the Boggle Grid
+/* Boggle Grid
 //instance variables:
 2D array 
 list of all possible words
